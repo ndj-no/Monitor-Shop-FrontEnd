@@ -26,5 +26,7 @@ jobs:
     needs: build
     runs-on: [ deploy ]
     steps:
+      - name: remove old container
+        run: docker rm -f ${{ env.SERVICE }}
       - name: Checkout
         run: docker run -itd --network app-net --restart=unless-stopped  --name ${{ env.SERVICE }} -p 4200:80 mshop/${{ env.SERVICE }}:latest
