@@ -15,7 +15,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Build docker image
-        if: github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop'
         uses: docker/build-push-action@v5
         with:
           context: .
