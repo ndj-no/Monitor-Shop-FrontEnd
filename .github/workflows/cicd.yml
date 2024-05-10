@@ -19,7 +19,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          args: BUILD_MODE=production
+          build-args: BUILD_MODE=production
           tags: mshop/front-end:latest
 
   deploy:

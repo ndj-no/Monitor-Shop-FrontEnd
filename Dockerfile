@@ -3,7 +3,7 @@ FROM node:16 AS build
 ARG BUILD_MODE
 WORKDIR /app
 COPY package.json ./
-RUN npm install
+RUN npm install -f
 COPY . .
 RUN if [ -n "$BUILD_MODE" ]; then \
         ng build --configuration ${BUILD_MODE}; \
