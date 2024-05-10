@@ -2,9 +2,8 @@
 FROM node:16 AS build
 ARG BUILD_MODE
 WORKDIR /app
-COPY package.json ./
-RUN npm install -f
 COPY . .
+RUN npm install -f
 RUN if [ -n "$BUILD_MODE" ]; then \
         npm run build -- --configuration ${BUILD_MODE}; \
     else \
