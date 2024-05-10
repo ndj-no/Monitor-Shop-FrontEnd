@@ -13,7 +13,7 @@ RUN if [ -n "$BUILD_MODE" ]; then \
 
 # Bước 2: Chạy ứng dụng Angular với Nginx
 FROM nginx:mainline-alpine3.18-slim AS final
-COPY --from=build /app/dist/web /usr/share/nginx/html
+COPY --from=build /app/dist/Monitor-Shop /usr/share/nginx/html
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
