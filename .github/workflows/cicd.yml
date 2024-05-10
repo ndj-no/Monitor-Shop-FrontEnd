@@ -27,4 +27,4 @@ jobs:
     runs-on: [ deploy ]
     steps:
       - name: Checkout
-        run: docker run -itd --network app-net --restart=unless-stopped  --name ${{ env.SERVICE }} -p 4200:4200 mshop/front-end:latest
+        run: docker run -itd --network app-net --restart=unless-stopped  --name ${{ env.SERVICE }} -p 4200:80 mshop/front-end:latest
