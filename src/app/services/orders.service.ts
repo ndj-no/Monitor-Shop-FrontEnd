@@ -2,15 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Order } from '../common/Order';
 import { OrderDetail } from '../common/OrderDetail';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
 
-  urlOD = 'http://localhost:9090/api/order-detail';
+  urlOD = environment.apiURL + '/api/order-detail';
 
-  urlO = 'http://localhost:9090/api/orders';
+  urlO = environment.apiURL + '/api/orders';
 
   constructor(private httpClient: HttpClient) { }
 

@@ -1,0 +1,31 @@
+name: ci/cd
+
+on:
+  push:
+    branches:
+      - "main"
+
+env:
+  SERVICE: front-end
+
+jobs:
+  build:
+    runs-on: [ build ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build docker image
+        if: github.ref == 'refs/heads/staging' || github.ref == 'refs/heads/develop'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          args: BUILD_MODE=production
+          tags: mshop/front-end:latest
+
+  deploy:
+    needs: build
+    runs-on: [ deploy ]
+    steps:
+      - name: Checkout
+        run: docker run -itd --network app-net --restart=unless-stopped  --name ${{ env.SERVICE }} -p 4200:4200 mshop/front-end:latest
