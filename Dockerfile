@@ -6,9 +6,9 @@ COPY package.json ./
 RUN npm install -f
 COPY . .
 RUN if [ -n "$BUILD_MODE" ]; then \
-        ng build --configuration ${BUILD_MODE}; \
+        npm run build -- --configuration ${BUILD_MODE}; \
     else \
-        ng build; \
+        npm run build; \
     fi
 
 # Bước 2: Chạy ứng dụng Angular với Nginx
