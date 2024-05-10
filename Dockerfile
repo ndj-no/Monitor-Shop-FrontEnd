@@ -1,5 +1,5 @@
 # Bước 1: Xây dựng ứng dụng Angular
-FROM node:14 AS build
+FROM node:16 AS build
 ARG BUILD_MODE
 WORKDIR /app
 COPY package.json ./
@@ -8,7 +8,7 @@ COPY . .
 RUN if [ -n "$BUILD_MODE" ]; then \
         ng build --configuration ${BUILD_MODE}; \
     else \
-        npm run build; \
+        ng build; \
     fi
 
 # Bước 2: Chạy ứng dụng Angular với Nginx
