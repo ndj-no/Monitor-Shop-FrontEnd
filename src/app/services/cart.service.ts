@@ -5,14 +5,15 @@ import { Cart } from '../common/cart';
 import { CartDetail } from '../common/CartDetail';
 import { Order } from '../common/Order';
 import { OrderDetail } from '../common/OrderDetail';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  urlC = 'http://localhost:9090/api/cart';
+  urlC = environment.apiURL + '/api/cart';
 
-  urlD = 'http://localhost:9090/api/cart-detail';
+  urlD = environment.apiURL + '/api/cart-detail';
 
   totalCartItems: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   $data: Observable<number> = this.totalCartItems.asObservable();
